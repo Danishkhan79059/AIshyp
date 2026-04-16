@@ -24,3 +24,58 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Force orange/yellow themed UI tokens to white + blue palette */
+[class*="text-[#ffa200]"],
+[class*="text-[#ff7a00]"],
+[class*="text-orange-"],
+[class*="text-amber-"],
+[class*="text-yellow-"] {
+  color: #172554 !important;
+}
+
+[class*="bg-[#ffa200]"],
+[class*="bg-[#ff7a00]"],
+[class*="bg-[rgba(255,162,0"],
+[class*="bg-[rgba(255,107,0"],
+[class*="bg-orange-"],
+[class*="bg-amber-"],
+[class*="bg-yellow-"] {
+  background: #eff6ff !important;
+}
+
+[class*="from-[#ffa200]"],
+[class*="from-[#ff7a00]"],
+[class*="from-[rgba(255,162,0"],
+[class*="from-[rgba(255,107,0"],
+[class*="from-orange-"],
+[class*="from-amber-"],
+[class*="from-yellow-"],
+[class*="via-[#ffa200]"],
+[class*="via-[#ff7a00]"],
+[class*="via-[rgba(255,162,0"],
+[class*="via-[rgba(255,107,0"],
+[class*="via-orange-"],
+[class*="via-amber-"],
+[class*="via-yellow-"],
+[class*="to-[#ffa200]"],
+[class*="to-[#ff7a00]"],
+[class*="to-[rgba(255,162,0"],
+[class*="to-[rgba(255,107,0"],
+[class*="to-orange-"],
+[class*="to-amber-"],
+[class*="to-yellow-"] {
+  --tw-gradient-from: #dbeafe var(--tw-gradient-from-position) !important;
+  --tw-gradient-via: #bfdbfe var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: #93c5fd var(--tw-gradient-to-position) !important;
+}
+
+[class*="border-[#ffa200]"],
+[class*="border-[#ff7a00]"],
+[class*="border-[rgba(255,162,0"],
+[class*="border-[rgba(255,107,0"],
+[class*="border-orange-"],
+[class*="border-amber-"],
+[class*="border-yellow-"] {
+  border-color: rgba(23, 37, 84, 0.25) !important;
+}
