@@ -32,6 +32,10 @@ export default function Header() {
       label: "Home",
       href: "/",
     },
+     {
+      label: "Pricing",
+      href: "/pricing",
+    },
     {
       label: "About Us",
       href: "/about",

@@ -396,7 +396,7 @@ export default function LandingPage() {
         />
 
         {/* floating stat card — right */}
-        <div
+        {/* <div
           className="hidden lg:block absolute top-32 right-8 xl:right-20"
           style={{
             opacity: heroVisible ? 1 : 0,
@@ -417,10 +417,10 @@ export default function LandingPage() {
               ↑ Scaling fast
             </p>
           </div>
-        </div>
+        </div> */}
 
         {/* floating stat card — left */}
-        <div
+        {/* <div
           className="hidden lg:block absolute bottom-40 left-8 xl:left-16"
           style={{
             opacity: heroVisible ? 1 : 0,
@@ -439,11 +439,11 @@ export default function LandingPage() {
             </p>
             <p className="text-[11px] text-black/40 mt-0.5">Revenue Target</p>
           </div>
-        </div>
+        </div> */}
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Logo row */}
-          <div
+          {/* <div
             style={{
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? "translateY(0)" : "translateY(-12px)",
@@ -463,7 +463,7 @@ export default function LandingPage() {
               <span className="text-black">AI</span>
               <span className="text-blue-950">Shyp</span>
             </span>
-          </div>
+          </div> */}
 
           {/* Badge */}
           <div
@@ -475,7 +475,7 @@ export default function LandingPage() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase mb-8"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200] animate-pulse" />
-            India's First Shipping Partner Aggregator Platform
+          Franchise-Driven Shipping Aggregator Platform
           </div>
 
           {/* Headline */}
@@ -608,7 +608,7 @@ export default function LandingPage() {
       </section>
 
       {/* ══ STATS BAR ══ */}
-      <section className="">
+      {/* <section className="">
         <div className="max-w-5xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
           <StatCard
             num="2000+"
@@ -619,6 +619,46 @@ export default function LandingPage() {
           <StatCard num="100+" label="Billion TAM (USD)" delay="0.12s" />
           <StatCard num="15+" label="Billion SAM (USD)" delay="0.24s" />
           <StatCard num="50+" label="Active Partners" delay="0.36s" />
+        </div>
+      </section> */}
+
+        {/* ══ SOLUTION ══ */}
+      <section className="bg-white ">
+        <div className="max-w-6xl mx-auto px-6 py-24">
+          <Reveal className="text-center mb-14">
+            <span className="text-[11px] font-bold tracking-[4px] uppercase text-blue-950">
+              Our Solution
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold mt-3">
+              One Platform. Three Game-Changers.
+            </h2>
+            <p className="text-black mt-3 max-w-xl mx-auto text-base leading-relaxed">
+              AIShyp gives shipping partners the tools, rates, and leads to
+              compete and scale — overnight.
+            </p>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {solutions.map((s, i) => (
+              <Reveal key={s.num} delay={`${i * 0.1}s`}>
+                <div
+                  className={`relative p-7 rounded-2xl border bg-gradient-to-br h-full ${s.color} ${s.border} transition-all duration-300 hover:scale-[1.02] hover:shadow-md`}
+                >
+                  <div
+                    className={`text-4xl font-extrabold mb-4 ${s.accent} opacity-30`}
+                  >
+                    {s.num}
+                  </div>
+                  <h3 className="text-lg font-bold text-black mb-3">
+                    {s.title}
+                  </h3>
+                  <p className="text-sm text-black leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -664,45 +704,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ══ SOLUTION ══ */}
-      <section className="bg-white ">
-        <div className="max-w-6xl mx-auto px-6 py-24">
-          <Reveal className="text-center mb-14">
-            <span className="text-[11px] font-bold tracking-[4px] uppercase text-blue-950">
-              Our Solution
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold mt-3">
-              One Platform. Three Game-Changers.
-            </h2>
-            <p className="text-black mt-3 max-w-xl mx-auto text-base leading-relaxed">
-              AIShyp gives shipping partners the tools, rates, and leads to
-              compete and scale — overnight.
-            </p>
-          </Reveal>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {solutions.map((s, i) => (
-              <Reveal key={s.num} delay={`${i * 0.1}s`}>
-                <div
-                  className={`relative p-7 rounded-2xl border bg-gradient-to-br h-full ${s.color} ${s.border} transition-all duration-300 hover:scale-[1.02] hover:shadow-md`}
-                >
-                  <div
-                    className={`text-4xl font-extrabold mb-4 ${s.accent} opacity-30`}
-                  >
-                    {s.num}
-                  </div>
-                  <h3 className="text-lg font-bold text-black mb-3">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-black leading-relaxed">
-                    {s.desc}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       {/* ══ MARKET SIZE ══ */}
       <section className="max-w-6xl mx-auto px-6 py-24">
