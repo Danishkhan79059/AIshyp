@@ -151,7 +151,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="relative min-h-screen bg-white text-black pt-28 pb-16 px-6 overflow-hidden">
+    <main className="relative min-h-screen bg-[#eef6ff] text-black pt-28 pb-16 px-6 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

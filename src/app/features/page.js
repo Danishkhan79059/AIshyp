@@ -40,14 +40,14 @@ const ndrSections = [
     title: "Automated Order Confirmation",
     description:
       "Verify orders through WhatsApp and IVR before shipping to minimize impulse cancellations, avoid doorstep rejections, and improve successful delivery rate.",
-    image: "/whats.png",
+    image: "/whatss.png",
     reverse: false,
   },
   {
     title: "Automated NDR Workflows",
     description:
       "Handle undelivered orders with automation + human support. Follow up via WhatsApp and IVR, then step in through call support for timely reattempts and reduced RTO.",
-    image: "/ndr.png",
+    image: "/ndrr.png",
     reverse: true,
   },
 ];
@@ -60,7 +60,7 @@ const imageSections = [
     "AIShyp’s branded tracking page allows you to provide real-time shipment tracking while maintaining your brand identity.",
   details:
     "Enhance customer experience, build trust, and reduce support queries with a fully customizable and professional tracking interface.",
-  image: "/tracking.png",
+  image: "/brandedTracking.png",
   reverse: false,
   highlights: [
     "Custom branded tracking page",
@@ -76,7 +76,7 @@ const imageSections = [
     "AIShyp’s tech-enabled shipping dashboard provides complete logistics control from a single platform, accessible on both mobile and desktop devices.",
   details:
     "Manage orders, track shipments in real time, monitor performance, and make smarter shipping decisions with a clean and scalable dashboard.",
-  image: "/dashboardai.png",
+  image: "/aydash.png",
   reverse: false,
   highlights: [
     "One dashboard, complete control",
@@ -91,7 +91,7 @@ const imageSections = [
       "Fast COD remittance with D+1 / D+2 payouts helps sellers improve cash flow with no extra hidden charges.",
     details:
       "Real-time visibility ke saath transparent settlement workflows, quick payouts, aur smooth reconciliation operations.",
-    image: "/cod.png",
+    image: "/remittance.png",
     reverse: true,
     highlights: [
       "Get paid in 1-2 days",
@@ -286,7 +286,7 @@ export default function FeaturesPage() {
             <div className="rounded-2xl border border-blue-900/15 bg-white p-4 shadow-lg">
               <div className="overflow-hidden rounded-xl border border-blue-900/10">
                 <Image
-                  src="/dashboardai.png"
+                  src="/aydash.png"
                   alt="AIShyp feature dashboard preview"
                   width={900}
                   height={620}
@@ -341,10 +341,10 @@ export default function FeaturesPage() {
               <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-3">
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-white/10">
                   <Image
-                    src="/AIShip.png"
+                    src="/core.png"
                     alt="Shipping automation visual"
                     fill
-                    className="object-cover"
+                    className="object-fit"
                   />
                 </div>
               </div>

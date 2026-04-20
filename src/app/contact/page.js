@@ -152,7 +152,7 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="relative min-h-screen bg-white text-black pt-28 pb-16 px-6 overflow-hidden">
+    <main className="relative min-h-screen bg-[#eef6ff] text-black pt-28 pb-16 px-6 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -168,12 +168,12 @@ export default function ContactPage() {
       <section className="max-w-5xl mx-auto mb-10 animate-fade-up relative">
         <div className="pointer-events-none absolute -top-14 -right-16 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(255,162,0,0.07)_0%,transparent_70%)]" />
         <span className="inline-block bg-[rgba(255,162,0,0.15)] text-blue-950 text-[11px] font-semibold tracking-[3px] uppercase px-3 py-1 rounded-full border border-[rgba(255,162,0,0.3)]">
-          Contact AIShip
+          Contact Aishyp
         </span>
         <h1 className="mt-3 text-3xl md:text-5xl font-medium leading-tight">
           Connect with the{" "}
           <span className="text-blue-950 [text-shadow:0_0_20px_rgba(255,162,0,0.25)]">
-            AIShip
+            AIShyp
           </span>{" "}
           team.
         </h1>
@@ -313,10 +313,10 @@ export default function ContactPage() {
         {/* Sidebar */}
         <div className="lg:col-span-2 flex flex-col gap-5">
 
-          {/* Why AIShip */}
+          {/* Why Aishyp */}
           <div className="rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.03)] p-6">
             <h2 className="text-lg font-medium text-blue-950 mb-4">
-              Why contact AIShip?
+              Why contact Aishyp?
             </h2>
             <ul className="space-y-3">
               {whyReasons.map((reason) => (

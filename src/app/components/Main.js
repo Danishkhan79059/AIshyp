@@ -103,6 +103,9 @@ export default function LandingPage() {
   const [currentTrackingStep, setCurrentTrackingStep] = useState(0);
   const [activePreviewTab, setActivePreviewTab] = useState("dashboard");
   const [howVideoOpen, setHowVideoOpen] = useState(false);
+  const [activeStep, setActiveStep] = useState(1);
+
+
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 80);
@@ -132,6 +135,14 @@ export default function LandingPage() {
     }, 1800);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const stepTimer = setInterval(() => {
+      setActiveStep((prev) => (prev % steps.length) + 1);
+    }, 2000);
+
+    return () => clearInterval(stepTimer);
   }, []);
 
   /* ── Problems ── */
@@ -179,25 +190,49 @@ export default function LandingPage() {
     {
       num: "01",
       title: "Go Digital Instantly",
-      desc: "A white-labelled platform lets shipping partners digitize their business overnight — no tech expertise needed.",
-      color: "from-blue-500/15 to-blue-500/5",
-      border: "border-blue-500/25",
+      points: [
+        "Launch your logistics business online within minutes — no setup delays",
+        "Zero technical knowledge required — everything is ready-to-use",
+        "Fully white-labelled platform with your brand identity",
+        "Create, manage, and track orders from a single dashboard",
+        "Offer real-time shipment tracking to your customers",
+        "Improve customer trust with a professional digital presence",
+        "Reduce manual work and eliminate operational errors",
+        "Start scaling your business from day one without heavy investment",
+      ],
+      img: "/Digital.png",
       accent: "text-blue-400",
     },
     {
       num: "02",
       title: "Aggregate & Unlock Rates",
-      desc: "Pooling bookings across all partners creates the volume needed to negotiate and unlock significantly better shipping rates.",
-      color: "from-orange-500/15 to-amber-500/5",
-      border: "border-orange-500/25",
-      accent: "text-blue-950",
+      points: [
+        "Leverage collective shipping volume to unlock premium pricing",
+        "Access discounted courier rates usually available to large enterprises",
+        "Automatically choose the best and cheapest logistics partner",
+        "Optimize every shipment for cost, speed, and reliability",
+        "Increase your profit margins without increasing customer prices",
+        "Stay competitive in pricing against big logistics players",
+        "Reduce dependency on a single courier provider",
+        "Ensure consistent service quality across all shipments",
+      ],
+      img: "/Ratess.png",
+      accent: "text-orange-400",
     },
     {
       num: "03",
       title: "Grow Partner Revenue",
-      desc: "High-quality inbound leads and multi-LSP access increase customer spend and drive sustainable revenue growth for every partner.",
-      color: "from-green-500/15 to-emerald-500/5",
-      border: "border-green-500/25",
+      points: [
+        "Receive high-quality inbound leads ready to ship",
+        "Expand your reach without spending on marketing",
+        "Connect with multiple logistics service providers in one place",
+        "Increase customer retention with better service experience",
+        "Boost average order value with smarter pricing and options",
+        "Convert more inquiries into paying customers",
+        "Build long-term relationships with consistent demand flow",
+        "Scale your revenue predictably with continuous business growth",
+      ],
+      img: "/Revenue (2).png",
       accent: "text-green-400",
     },
   ];
@@ -320,6 +355,70 @@ export default function LandingPage() {
     },
   ];
 
+
+  const steps = [
+    {
+      id: 1,
+      badge: "Step 01",
+      icon: "📝",
+      title: "Signup & Dashboard",
+      description:
+        "Create your account and access your dashboard to manage all shipping operations in one place.",
+      points: ["Quick signup", "Access dashboard", "Manage everything centrally"],
+      accent: "from-blue-600 to-indigo-600",
+      softBg: "bg-blue-600/10",
+      accentText: "text-blue-950",
+      pointColor: "text-blue-600",
+      image:
+        "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=800",
+    },
+    {
+      id: 2,
+      badge: "Step 02",
+      icon: "🧾",
+      title: "Set Up Your Profile",
+      description:
+        "Complete your KYC and business profile to start shipping without any delays.",
+      points: ["KYC verification", "Business details", "Warehouse setup"],
+      accent: "from-[#ffa200] to-orange-500",
+      softBg: "bg-[#ffa200]/15",
+      accentText: "text-[#a85f00]",
+      pointColor: "text-[#cc7a00]",
+      image:
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800",
+    },
+    {
+      id: 3,
+      badge: "Step 03",
+      icon: "📦",
+      title: "Create Your Orders",
+      description:
+        "Easily create and manage your orders with all necessary shipment details.",
+      points: ["Add order details", "Bulk order upload", "Order management"],
+      accent: "from-green-600 to-emerald-600",
+      softBg: "bg-green-600/10",
+      accentText: "text-green-700",
+      pointColor: "text-green-600",
+      image:
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800",
+    },
+    {
+      id: 4,
+      badge: "Step 04",
+      icon: "🚚",
+      title: "Ship & Track",
+      description:
+        "Ship your orders with top courier partners and track them in real-time.",
+      points: ["Choose courier", "Ship orders", "Live tracking updates"],
+      accent: "from-purple-600 to-violet-600",
+      softBg: "bg-purple-600/10",
+      accentText: "text-purple-700",
+      pointColor: "text-purple-600",
+      image:
+        "https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=800",
+    },
+  ];
+
   /* ── Join Cards ── */
   const joinCards = [
     {
@@ -393,22 +492,25 @@ export default function LandingPage() {
     {
       id: "dashboard",
       label: "Dashboard",
-      image: "/dashboardai.png",
+      image: "/aydash.png",
       alt: "AIShyp dashboard preview",
     },
     {
       id: "analytics",
       label: "Analytics",
-      image: "/tracking.png",
+      image: "/analyticss.png",
       alt: "AIShyp analytics preview",
     },
     {
       id: "support",
       label: "Support Tickets",
-      image: "/image.png",
+      image: "/support.png",
       alt: "AIShyp support tickets preview",
     },
   ];
+
+  const current = steps.find((s) => s.id === activeStep);
+
 
   const activePreview =
     platformPreviewTabs.find((tab) => tab.id === activePreviewTab) ??
@@ -439,8 +541,8 @@ export default function LandingPage() {
           }}
         />
 
-        {/* floating stat card — right */}
-        {/* <div
+        {/* floating news-style stat card — right */}
+        <div
           className="hidden lg:block absolute top-32 right-8 xl:right-20"
           style={{
             opacity: heroVisible ? 1 : 0,
@@ -450,21 +552,61 @@ export default function LandingPage() {
             transition: "all 0.9s ease 0.8s",
           }}
         >
-          <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur-md px-5 py-4 min-w-[168px] shadow-lg">
-            <p className="text-xs text-black/45 font-medium">
-              Daily Orders Target
+          <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur-md px-5 py-5 w-[240px] shadow-xl">
+            {/* Tag */}
+            <span className="text-[10px] uppercase tracking-widest text-blue-900 font-bold">
+              Platform Benefits
+            </span>
+
+            {/* Headline */}
+            <p className="text-sm font-semibold text-black mt-1 leading-snug">
+              Built to Grow Your Shipping Business 🚀
             </p>
-            <p className="text-2xl font-extrabold text-blue-950 mt-0.5">
-              2,000+
-            </p>
-            <p className="text-[11px] text-green-500 mt-0.5 font-medium">
-              ↑ Scaling fast
+
+            {/* Features */}
+            <div className="mt-3 space-y-2">
+              <div>
+                <p className="text-[12px] font-semibold text-blue-950">
+                  📈 Grow Partner Revenue
+                </p>
+                <p className="text-[11px] text-black/60">
+                  Get more orders & repeat customers
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[12px] font-semibold text-blue-950">
+                  🤝 Aggregate & Unlock Rates
+                </p>
+                <p className="text-[11px] text-black/60">
+                  Access better courier pricing through volume
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[12px] font-semibold text-blue-950">
+                  ⚡ Go Digital Instantly
+                </p>
+                <p className="text-[11px] text-black/60">
+                  Manage bookings, tracking & billing in one place
+                </p>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-black/10 my-3"></div>
+
+            {/* Bottom line */}
+            <p className="text-[11px] text-blue-900 font-semibold">
+              💡 Everything you need to scale — in one platform
             </p>
           </div>
-        </div> */}
+        </div>
 
-        {/* floating stat card — left */}
-        {/* <div
+        {/* floating news-style stat card — right */}
+
+        {/* floating value card — left */}
+        <div
           className="hidden lg:block absolute bottom-40 left-8 xl:left-16"
           style={{
             opacity: heroVisible ? 1 : 0,
@@ -474,16 +616,41 @@ export default function LandingPage() {
             transition: "all 0.9s ease 1s",
           }}
         >
-          <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur-md px-5 py-4 min-w-[168px] shadow-lg">
-            <p className="text-xs text-black/45 font-medium">
-              Aggregated Volume
+          <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur-md px-5 py-5 w-[240px] shadow-xl">
+            {/* Tag */}
+            <span className="text-[10px] uppercase tracking-widest text-blue-900 font-bold">
+              For Franchise Partners
+            </span>
+
+            {/* Headline */}
+            <p className="text-sm font-semibold text-black mt-1 leading-snug">
+              More Business. Better Margins.
             </p>
-            <p className="text-2xl font-extrabold text-blue-950 mt-0.5">
-              ₹6Cr+
+
+            {/* Description */}
+            <p className="text-[12px] text-black/60 mt-2 leading-relaxed">
+              Grow your shipping franchise with better courier rates,
+              high-quality leads, and powerful tools — all in one platform.
             </p>
-            <p className="text-[11px] text-black/40 mt-0.5">Revenue Target</p>
+
+            {/* Key highlights */}
+            <div className="mt-3 space-y-1">
+              <p className="text-[11px] text-black/70">
+                ✔ White-label platform
+              </p>
+              <p className="text-[11px] text-black/70">✔ Hot leads provided</p>
+              <p className="text-[11px] text-black/70">✔ No upfront cost</p>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-black/10 my-3"></div>
+
+            {/* Bottom CTA style line */}
+            <p className="text-[11px] text-blue-900 font-semibold">
+              🚀 Free to join • Start instantly
+            </p>
           </div>
-        </div> */}
+        </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Logo row */}
@@ -652,8 +819,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-
-
       {/* ══ STATS BAR ══ */}
       {/* <section className="">
         <div className="max-w-5xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
@@ -670,45 +835,76 @@ export default function LandingPage() {
       </section> */}
 
       {/* ══ SOLUTION ══ */}
-      <section className="bg-white ">
+      <section className="bg-white">
         <div className="max-w-6xl mx-auto px-6 py-24">
-          <Reveal className="text-center mb-14">
-            <span className="text-[11px] font-bold tracking-[4px] uppercase text-blue-950">
-              Our Solution
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold mt-3">
-              One Platform. Three Game-Changers.
-            </h2>
-            <p className="text-black mt-3 max-w-xl mx-auto text-base leading-relaxed">
-              AIShyp gives shipping partners the tools, rates, and leads to
-              compete and scale — overnight.
-            </p>
+          {/* HEADER */}
+          <Reveal>
+            <div className="text-center mb-16">
+              <span className="text-[11px] font-bold tracking-[4px] uppercase text-blue-950">
+                Our Solution
+              </span>
+              <h2 className="text-3xl md:text-4xl font-extrabold mt-3">
+                One Platform. Three Game-Changers.
+              </h2>
+              <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+                AIShyp gives shipping partners the tools, rates, and leads to
+                compete and scale — overnight.
+              </p>
+            </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* CONTENT */}
+          <div className="space-y-20">
             {solutions.map((s, i) => (
-              <Reveal key={s.num} delay={`${i * 0.1}s`}>
+              <Reveal key={s.num}>
                 <div
-                  className={`relative p-7 rounded-2xl border bg-gradient-to-br h-full ${s.color} ${s.border} transition-all duration-300 hover:scale-[1.02] hover:shadow-md`}
+                  className={`flex flex-col md:flex-row items-center gap-12 ${i % 2 !== 0 ? "md:flex-row-reverse" : ""
+                    }`}
                 >
-                  <div
-                    className={`text-4xl font-extrabold mb-4 ${s.accent} opacity-30`}
-                  >
-                    {s.num}
+                  {/* IMAGE */}
+                  <div className="md:w-1/2">
+                    <div className="w-full h-[50%] flex items-center justify-center bg-gray-100 rounded-2xl shadow-lg p-2">
+                      <img
+                        src={s.img}
+                        alt={s.title}
+                        className="w-full h-auto object-contain rounded-2xl"
+                      />
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-black mb-3">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-black leading-relaxed">
-                    {s.desc}
-                  </p>
+
+                  {/* TEXT */}
+                  <div className="md:w-1/2">
+                    <div
+                      className={`text-5xl font-extrabold mb-4 opacity-20 ${s.accent}`}
+                    >
+                      {s.num}
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-black mb-4">
+                      {s.title}
+                    </h3>
+
+                    {/* BULLET LIST */}
+                    <ul className="space-y-3">
+                      {s.points.map((point, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-start gap-3 text-gray-700 text-sm"
+                        >
+                          <span
+                            className={`mt-2 w-2 h-2 rounded-full bg-current ${s.accent}`}
+                          />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
-
 
       {/* ══ PLATFORM PREVIEW ══ */}
       <section className="bg-white">
@@ -737,8 +933,8 @@ export default function LandingPage() {
                     type="button"
                     onClick={() => setActivePreviewTab(tab.id)}
                     className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold border transition-all duration-200 ${activePreviewTab === tab.id
-                      ? "bg-[#ffa200]/15 text-blue-950 border-[#ffa200]/35"
-                      : "bg-white text-black/70 border-black/15 hover:border-black/30 hover:text-black"
+                        ? "bg-[#ffa200]/15 text-blue-950 border-[#ffa200]/35"
+                        : "bg-white text-black/70 border-black/15 hover:border-black/30 hover:text-black"
                       }`}
                   >
                     {tab.label}
@@ -754,7 +950,7 @@ export default function LandingPage() {
                     <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
                   </div>
                   <span className="text-[10px] md:text-xs text-black/45 font-semibold tracking-wide">
-                    app.aishyp.com
+                    aishyp.com
                   </span>
                   <span className="text-[10px] md:text-xs text-blue-950 font-semibold">
                     Live Platform
@@ -773,38 +969,167 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ══ HOW IT WORKS ══ */}
+      <section className="bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-20">
+          {/* Header */}
+          <div className="text-center mb-10">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200]" />
+              ⚡ Simple Process
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold mt-4 text-blue-950">
+              How It <span className="text-[#ffa200]">Works</span>
+            </h2>
+            <p className="text-black/60 mt-3 max-w-2xl mx-auto text-base leading-relaxed">
+              Streamline your shipping process in just four simple steps with our
+              user-friendly platform
+            </p>
+          </div>
+
+          {/* Step Progress */}
+          <div className="flex items-center justify-center mb-12 overflow-x-auto pb-2">
+            {steps.map((step, index) => (
+              <div key={step.id} className="flex items-center min-w-fit">
+                {/* Circle */}
+                <div
+                  onClick={() => setActiveStep(step.id)}
+                  className={`w-11 h-11 flex items-center justify-center rounded-full cursor-pointer text-sm font-bold border transition-all
+              ${activeStep === step.id
+                      ? "bg-[#ffa200] text-white border-[#ffa200] shadow-lg shadow-[#ffa200]/35"
+                      : activeStep > step.id
+                        ? "bg-blue-950 text-white border-blue-950"
+                        : "bg-white text-black/50 border-black/15 hover:border-black/25"
+                    }`}
+                >
+                  {step.id}
+                </div>
+
+                {/* Line */}
+                {index !== steps.length - 1 && (
+                  <div
+                    className={`w-14 md:w-24 h-1 transition-all
+                ${activeStep > step.id
+                        ? "bg-blue-950"
+                        : "bg-black/10"
+                      }`}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Content Section */}
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            {/* Left Content */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div
+                  className={`w-12 h-12 rounded-xl bg-gradient-to-r ${current.accent} flex items-center justify-center text-white text-xl shadow-md`}
+                >
+                  {current.icon}
+                </div>
+                <span
+                  className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase ${current.softBg} ${current.accentText}`}
+                >
+                  {current.badge}
+                </span>
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-bold text-blue-950 mb-3">
+                {current.title}
+              </h3>
+
+              <p className="text-black/60 mb-5 leading-relaxed">{current.description}</p>
+
+              <ul className="space-y-2">
+                {current.points.map((point, i) => (
+                  <li key={i} className="flex items-center gap-2 text-black/75">
+                    <span className={current.pointColor}>✔</span> {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right Image */}
+            <div className="relative">
+              <div className="bg-white rounded-2xl border border-black/10 shadow-xl p-4">
+                <img
+                  src={current.image}
+                  alt="step"
+                  className="w-full h-[280px] object-cover rounded-xl"
+                />
+              </div>
+
+              {/* Floating Badge */}
+              {/* <div className="absolute top-4 right-4 bg-white border border-black/10 px-3 py-1 rounded-full shadow text-sm flex items-center gap-2">
+            <span className="w-2 h-2 bg-[#ffa200] rounded-full"></span>
+            Live Status
+          </div> */}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ══ PROBLEM ══ */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <Reveal className="text-center mb-14">
-          <span className="text-[11px] font-bold tracking-[4px] uppercase text-blue-950">
+      <section className="max-w-6xl mx-auto px-6 py-28">
+        {/* HEADER */}
+        <Reveal className="text-center mb-16">
+          <span className="text-[11px] font-bold tracking-[4px] uppercase text-red-500">
             The Problem
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold mt-3">
-            What's Holding Shipping Partners Back
+
+          <h2 className="text-3xl md:text-4xl font-extrabold mt-3 text-blue-950 leading-tight">
+            What’s Slowing Down <br className="hidden md:block" />
+            Shipping Franchise Growth
           </h2>
-          <p className="text-black mt-3 max-w-xl mx-auto text-base leading-relaxed">
-            Independent shipping franchisees face structural disadvantages that
-            prevent them from competing with large aggregators.
+
+          <p className="text-black/60 mt-4 max-w-xl mx-auto text-base leading-relaxed">
+            Independent shipping partners struggle to compete due to limited
+            access to pricing power, technology, and consistent business
+            opportunities.
           </p>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 gap-5">
+        {/* GRID */}
+        <div className="grid sm:grid-cols-2 gap-6">
           {problems.map((p, i) => (
             <Reveal key={p.title} delay={`${i * 0.08}s`}>
               <div
                 onMouseEnter={() => setActiveCard(`p-${i}`)}
                 onMouseLeave={() => setActiveCard(null)}
-                className={`p-6 rounded-2xl border transition-all duration-300 ${activeCard === `p-${i}` ? "border-red-400/30 bg-red-500/5 scale-[1.02]" : "border-black/8 bg-black/[0.02] hover:scale-[1.01]"}`}
+                className={`
+            group p-6 rounded-2xl border transition-all duration-300 relative overflow-hidden
+            ${activeCard === `p-${i}`
+                    ? "border-red-400/40 bg-red-500/5 scale-[1.03] shadow-lg"
+                    : "border-black/10 bg-white hover:scale-[1.02] hover:shadow-md"
+                  }
+          `}
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center bg-red-500/10 border border-red-500/20 text-red-500 mt-0.5">
+                {/* subtle gradient glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-red-500/5 to-transparent"></div>
+
+                <div className="flex items-start gap-4 relative z-10">
+                  {/* ICON */}
+                  <div
+                    className={`
+              w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center
+              border transition-all duration-300
+              ${activeCard === `p-${i}`
+                        ? "bg-red-500 text-white border-red-500 shadow-md"
+                        : "bg-red-500/10 border-red-500/20 text-red-500 group-hover:bg-red-500 group-hover:text-white"
+                      }
+            `}
+                  >
                     {p.icon}
                   </div>
+
+                  {/* TEXT */}
                   <div>
                     <h3 className="text-base font-bold text-black mb-1.5">
                       {p.title}
                     </h3>
-                    <p className="text-sm text-black leading-relaxed">
+                    <p className="text-sm text-black/60 leading-relaxed">
                       {p.desc}
                     </p>
                   </div>
@@ -814,8 +1139,6 @@ export default function LandingPage() {
           ))}
         </div>
       </section>
-
-
 
       {/* ══ MARKET SIZE ══ */}
       <section className="max-w-6xl mx-auto px-6 py-24">
@@ -918,21 +1241,27 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
             <div className="hidden lg:block absolute top-9 left-[14%] right-[14%] h-px bg-gradient-to-r from-transparent via-[#ffa200]/25 to-transparent" />
+
             {adoptionSteps.map((step, i) => (
               <Reveal
                 key={step.num}
                 delay={`${i * 0.1}s`}
-                className="relative text-center"
+                className="relative flex flex-col items-center text-center h-full"
               >
-                <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-5 border border-[#ffa200]/30 bg-[#ffa200]/10 relative z-10">
+                {/* Number Box */}
+                <div className="w-16 h-16 flex-shrink-0 mx-auto rounded-2xl flex items-center justify-center mb-5 border border-[#ffa200]/30 bg-[#ffa200]/10 relative z-10">
                   <span className="text-xl font-extrabold text-blue-950">
                     {step.num}
                   </span>
                 </div>
+
+                {/* Title */}
                 <h3 className="text-base font-bold text-black mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-black leading-relaxed">
+
+                {/* Description */}
+                <p className="text-sm text-black leading-relaxed flex-grow">
                   {step.desc}
                 </p>
               </Reveal>
@@ -1290,10 +1619,10 @@ export default function LandingPage() {
                                 </p>
                                 <span
                                   className={`text-[10px] md:text-xs font-bold uppercase tracking-[2px] ${isDone
-                                    ? "text-green-600"
-                                    : isActive
-                                      ? "text-blue-950"
-                                      : "text-black/35"
+                                      ? "text-green-600"
+                                      : isActive
+                                        ? "text-blue-950"
+                                        : "text-black/35"
                                     }`}
                                 >
                                   {isDone
@@ -1596,13 +1925,7 @@ export default function LandingPage() {
                     Savings
                   </span>
                   <h2 className="text-3xl md:text-4xl font-extrabold mt-3 mb-4">
-                    Discounted{" "}
-                    <span
-                      className="text-red-500"
-
-                    >
-                      Shipping
-                    </span>
+                    Discounted <span className="text-red-500">Shipping</span>
                   </h2>
                   <p className="text-black/55 text-base md:text-lg leading-relaxed">
                     AIShyp combines volume from all our shippers to get the best
@@ -1738,12 +2061,7 @@ export default function LandingPage() {
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold mt-3 mb-4 leading-tight">
             The future of shipping belongs to{" "}
-            <span
-              className="text-red-500"
-
-            >
-              connected partners
-            </span>
+            <span className="text-red-500">connected partners</span>
           </h2>
           <p className="text-black text-base max-w-xl mx-auto leading-relaxed">
             Not isolated operators. Join AIShyp today — and start competing on
@@ -1849,7 +2167,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-2.5">
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg,#ffa200,#ff6b00)" }}
+              style={{ background: "linear-gradient(135deg, #ef4444, #172554)" }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
                 <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z" />

@@ -80,7 +80,7 @@ export default function Page() {
   ];
 
   return (
-    <main className="bg-white text-black pt-28 pb-20">
+    <main className="bg-[#eef6ff] text-black pt-28 pb-20">
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6">
          <div

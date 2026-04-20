@@ -69,11 +69,44 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="border-t border-black/10" style={{ background: theme.colors.footerBackground, color: theme.colors.text }}>
+    <footer className="relative overflow-hidden border-t border-blue-200/70 bg-[#eaf3ff] text-black">
+      {/* backdrop glows */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[42rem] -translate-x-1/2 rounded-full bg-blue-400/20 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-56 w-80 rounded-full bg-sky-300/25 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-56 w-80 rounded-full bg-sky-300/25 blur-3xl" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-45"
+        style={{
+          backgroundImage:
+              "linear-gradient(rgba(37,99,235,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.1) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+        }}
+      />
+      <div className="relative">
+        {/* ── NEWSLETTER ── */}
+        <div className="border-b border-blue-200/70">
+          <div className="max-w-6xl mx-auto px-6 py-12 text-center">
+            <p className="text-2xl md:text-3xl font-bold tracking-tight">Stay updated with AIShyp</p>
+            <p className="text-black/55 text-sm mt-2">Get delivery tips, offers & logistics news.</p>
+            <div className="mt-6 flex items-center justify-center gap-2 w-full">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full max-w-sm px-4 py-2.5 rounded-full bg-white border border-blue-200 text-sm text-black placeholder-black/40 outline-none focus:border-blue-400 transition-colors duration-200"
+              />
+              <button
+                className="px-6 py-2.5 rounded-full text-sm font-semibold text-white flex-shrink-0 transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+                style={{ background: theme.colors.accentGradient }}
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
 
-      {/* ── STATS BAR ── */}
-      <div className="border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* ── STATS BAR ── */}
+        <div className="border-b border-blue-200/60">
+          <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => (
             <div key={s.label} className="text-center">
               <p className="text-3xl font-bold text-blue-950 tracking-wide">{s.num}</p>
@@ -92,7 +125,7 @@ export default function Footer() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 w-fit">
             <div
-              className="relative w-11 h-11 rounded-xl flex items-center justify-center  overflow-hidden bg-white"
+              className="relative w-11 h-11 rounded-xl flex items-center justify-center overflow-hidden bg-white"
             >
               <Image
                 src="/aishiplogo.png"
@@ -109,7 +142,7 @@ export default function Footer() {
             </div>
           </Link>
 
-          <p className="text-sm text-black leading-relaxed max-w-xs">
+          <p className="text-sm text-black/70 leading-relaxed max-w-xs">
             Pan-India freight solutions with real-time tracking, guaranteed delivery windows,
             and a trusted network spanning 500+ cities since 2005.
           </p>
@@ -130,8 +163,8 @@ export default function Footer() {
                 text: "Gurgaon, sector-4",
               },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm text-black/60">
-                <span className="text-blue-950 flex-shrink-0">
+              <div key={i} className="flex items-center gap-3 text-sm text-black/65">
+                <span className="text-blue-900 flex-shrink-0">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">{item.icon}</svg>
                 </span>
                 {item.text}
@@ -146,7 +179,7 @@ export default function Footer() {
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-black/60 border border-black/10 transition-all duration-200 hover:text-blue-950 hover:border-[#ffa200]/50 hover:bg-[#ffa200]/10"
+                className="w-9 h-9 rounded-full flex items-center justify-center text-black/70 border border-blue-200 transition-all duration-200 hover:text-blue-950 hover:border-blue-300 hover:bg-blue-100"
               >
                 {s.icon}
               </a>
@@ -165,9 +198,9 @@ export default function Footer() {
                 <li key={typeof item === "string" ? item : item.label}>
                   <a
                     href={typeof item === "string" ? "#" : item.href}
-                    className="text-sm text-black hover:text-black transition-colors duration-200 hover:translate-x-1 inline-flex items-center gap-1.5 group"
+                    className="text-sm text-black/70 hover:text-black transition-colors duration-200 hover:translate-x-1 inline-flex items-center gap-1.5 group"
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-[#ffa200] transition-all duration-200 rounded-full" />
+                    <span className="w-0 group-hover:w-2 h-px bg-blue-400 transition-all duration-200 rounded-full" />
                     {typeof item === "string" ? item : item.label}
                   </a>
                 </li>
@@ -177,45 +210,22 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* ── NEWSLETTER ── */}
-      <div className="border-t border-black/10">
-        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="text-black font-semibold text-sm tracking-wide">Stay updated with AIShyp</p>
-            <p className="text-black/50 text-xs mt-0.5">Get delivery tips, offers & logistics news.</p>
-          </div>
-          <div className="flex items-center gap-2 w-full md:w-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 md:w-64 px-4 py-2.5 rounded-lg bg-black/[0.02] border border-black/10 text-sm text-black placeholder-black/35 outline-none focus:border-[#ffa200]/50 transition-colors duration-200"
-            />
-            <button
-              className="px-5 py-2.5 rounded-lg text-sm font-semibold text-white flex-shrink-0 transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-              style={{ background: theme.colors.accentGradient }}
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* ── BOTTOM BAR ── */}
-      <div className="border-t border-black/10">
+      <div className="border-t border-blue-200/60">
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-black/45 tracking-wide">
             © {currentYear} AIShyp Logistics Network. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             {["Privacy Policy", "Terms of Use", "Cookie Policy"].map((item) => (
-              <a key={item} href="#" className="text-xs text-black/45 hover:text-black/70 transition-colors duration-200">
+              <a key={item} href="#" className="text-xs text-black/45 hover:text-blue-800 transition-colors duration-200">
                 {item}
               </a>
             ))}
           </div>
         </div>
       </div>
-
+      </div>
     </footer>
   )
 }
