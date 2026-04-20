@@ -22,8 +22,8 @@ function useCountUp(target, duration = 2000, start = false) {
       const current = eased * num;
       setVal(
         prefix +
-          (isDecimal ? current.toFixed(1) : Math.round(current)) +
-          suffix,
+        (isDecimal ? current.toFixed(1) : Math.round(current)) +
+        suffix,
       );
       if (progress < 1) requestAnimationFrame(step);
     };
@@ -101,11 +101,30 @@ export default function LandingPage() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
   const [currentTrackingStep, setCurrentTrackingStep] = useState(0);
+  const [activePreviewTab, setActivePreviewTab] = useState("dashboard");
+  const [howVideoOpen, setHowVideoOpen] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 80);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    if (!howVideoOpen) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setHowVideoOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [howVideoOpen]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -262,7 +281,7 @@ export default function LandingPage() {
       role: "Founder",
       detail: "IIM Mumbai · Ex DTDC",
       initials: "MP",
-      color: "from-orange-500 to-red-500",
+      color: "from-blue-500 to-indigo-500",
     },
     {
       name: "Parag Aggarwal",
@@ -297,7 +316,7 @@ export default function LandingPage() {
       role: "Backend Developer",
       detail: "",
       initials: "HS",
-      color: "from-amber-500 to-orange-500",
+      color: "from-cyan-500 to-blue-500",
     },
   ];
 
@@ -369,6 +388,31 @@ export default function LandingPage() {
     "/shadowfx.png",
     "/bluedarte.png",
   ];
+
+  const platformPreviewTabs = [
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      image: "/dashboardai.png",
+      alt: "AIShyp dashboard preview",
+    },
+    {
+      id: "analytics",
+      label: "Analytics",
+      image: "/tracking.png",
+      alt: "AIShyp analytics preview",
+    },
+    {
+      id: "support",
+      label: "Support Tickets",
+      image: "/image.png",
+      alt: "AIShyp support tickets preview",
+    },
+  ];
+
+  const activePreview =
+    platformPreviewTabs.find((tab) => tab.id === activePreviewTab) ??
+    platformPreviewTabs[0];
 
   return (
     <main className="bg-white text-black overflow-x-hidden">
@@ -475,7 +519,7 @@ export default function LandingPage() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase mb-8"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200] animate-pulse" />
-          Franchise-Driven Shipping Aggregator Platform
+            Franchise-Driven Shipping Aggregator Platform
           </div>
 
           {/* Headline */}
@@ -529,8 +573,9 @@ export default function LandingPage() {
               />
               Join the Network — Free
             </a>
-            <a
-              href="#how"
+            <button
+              type="button"
+              onClick={() => setHowVideoOpen(true)}
               className="flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-[15px] font-semibold text-black/70 border border-black/15 hover:text-black hover:border-black/30 hover:bg-black/5 transition-all duration-300"
             >
               <svg
@@ -542,7 +587,7 @@ export default function LandingPage() {
                 <path d="M8 5v14l11-7z" />
               </svg>
               See How It Works
-            </a>
+            </button>
           </div>
 
           {/* Hero stats */}
@@ -607,6 +652,8 @@ export default function LandingPage() {
         </div>
       </section>
 
+
+
       {/* ══ STATS BAR ══ */}
       {/* <section className="">
         <div className="max-w-5xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
@@ -622,7 +669,7 @@ export default function LandingPage() {
         </div>
       </section> */}
 
-        {/* ══ SOLUTION ══ */}
+      {/* ══ SOLUTION ══ */}
       <section className="bg-white ">
         <div className="max-w-6xl mx-auto px-6 py-24">
           <Reveal className="text-center mb-14">
@@ -659,6 +706,70 @@ export default function LandingPage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+
+      {/* ══ PLATFORM PREVIEW ══ */}
+      <section className="bg-white">
+        <div className="max-w-6xl mx-auto px-6 pb-6 md:pb-12">
+          <Reveal className="text-center mb-10">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200]" />
+              Platform Preview
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold leading-tight text-blue-950">
+              Everything you need,
+              <span className="text-red-500"> in one dashboard</span>
+            </h2>
+            <p className="text-black mt-4 max-w-2xl mx-auto text-base leading-relaxed">
+              A focused view for orders, analytics, and support so partners can
+              run daily shipping operations faster.
+            </p>
+          </Reveal>
+
+          <Reveal delay="0.12s">
+            <div className="rounded-[28px] border border-black/10 bg-white shadow-[0_22px_75px_rgba(17,24,39,0.09)] p-4 md:p-6 lg:p-8">
+              <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+                {platformPreviewTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActivePreviewTab(tab.id)}
+                    className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold border transition-all duration-200 ${activePreviewTab === tab.id
+                      ? "bg-[#ffa200]/15 text-blue-950 border-[#ffa200]/35"
+                      : "bg-white text-black/70 border-black/15 hover:border-black/30 hover:text-black"
+                      }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="rounded-2xl border border-black/10 overflow-hidden bg-white">
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-black/10 bg-black/[0.02]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                  </div>
+                  <span className="text-[10px] md:text-xs text-black/45 font-semibold tracking-wide">
+                    app.aishyp.com
+                  </span>
+                  <span className="text-[10px] md:text-xs text-blue-950 font-semibold">
+                    Live Platform
+                  </span>
+                </div>
+
+                <img
+                  src={activePreview.image}
+                  alt={activePreview.alt}
+                  loading="lazy"
+                  className="w-full h-auto object-cover transition-all duration-300"
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -704,7 +815,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-    
+
 
       {/* ══ MARKET SIZE ══ */}
       <section className="max-w-6xl mx-auto px-6 py-24">
@@ -1178,13 +1289,12 @@ export default function LandingPage() {
                                   {step.title}
                                 </p>
                                 <span
-                                  className={`text-[10px] md:text-xs font-bold uppercase tracking-[2px] ${
-                                    isDone
-                                      ? "text-green-600"
-                                      : isActive
-                                        ? "text-blue-950"
-                                        : "text-black/35"
-                                  }`}
+                                  className={`text-[10px] md:text-xs font-bold uppercase tracking-[2px] ${isDone
+                                    ? "text-green-600"
+                                    : isActive
+                                      ? "text-blue-950"
+                                      : "text-black/35"
+                                    }`}
                                 >
                                   {isDone
                                     ? "Done"
@@ -1249,10 +1359,10 @@ export default function LandingPage() {
                     Compare{" "}
                     <span
                       className="text-red-500 bg-clip-text"
-                      // style={{
-                      //   backgroundImage:
-                      //     "linear-gradient(135deg,#ffa200,#ff6b00)",
-                      // }}
+                    // style={{
+                    //   backgroundImage:
+                    //     "linear-gradient(135deg,#ffa200,#ff6b00)",
+                    // }}
                     >
                       Rates
                     </span>
@@ -1489,7 +1599,7 @@ export default function LandingPage() {
                     Discounted{" "}
                     <span
                       className="text-red-500"
-                    
+
                     >
                       Shipping
                     </span>
@@ -1630,7 +1740,7 @@ export default function LandingPage() {
             The future of shipping belongs to{" "}
             <span
               className="text-red-500"
-             
+
             >
               connected partners
             </span>
@@ -1760,6 +1870,61 @@ export default function LandingPage() {
           </p>
         </div>
       </footer>
+
+      <AnimatePresence>
+        {howVideoOpen && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            aria-modal="true"
+            role="dialog"
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) setHowVideoOpen(false);
+            }}
+          >
+            {/* BACKDROP */}
+            <div className="absolute inset-0 bg-black/70" />
+
+            {/* MODAL BOX */}
+            <motion.div
+              className="relative w-full max-w-4xl rounded-2xl border border-white/10 bg-black shadow-2xl overflow-hidden"
+              initial={{ scale: 0.96, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.96, opacity: 0, y: 10 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onMouseDown={(e) => e.stopPropagation()}
+            >
+              {/* HEADER */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black">
+                <p className="text-sm font-bold text-white tracking-wide">
+                  How AIShyp Works
+                </p>
+
+                <button
+                  onClick={() => setHowVideoOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* VIDEO */}
+              <div className="bg-black">
+                <iframe
+                  className="w-full aspect-video"
+                  src="https://www.youtube.com/embed/APA85mhQ5ho?autoplay=1&rel=0"
+                  title="How AIShyp Works"
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

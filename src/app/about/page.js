@@ -48,7 +48,7 @@ const PHOTOS = {
   danish: "/Danish.png",
   manav: "/Manav.png",
   sudhanshu: "/sudhanshu.png",
-  hitesh: "/image.png",
+  hitesh: "/hitesh.jpeg",
 };
 
 function animateCounter(el, target, suffix, duration) {
@@ -188,7 +188,7 @@ export default function AboutPage() {
                 <p className="text-[13px] text-blue-950 mt-0.5 font-semibold">
                   Founder & CEO
                 </p>
-                <p className="text-xs text-black/38 mt-1">
+                <p className="text-xs text-white mt-1">
                   IIM Mumbai · Ex DTDC
                 </p>
               </div>
@@ -401,7 +401,7 @@ export default function AboutPage() {
                     {member.role}
                   </p>
                   {member.detail && (
-                    <p className="text-black text-[11px] mt-0.5">
+                    <p className="text-white text-[11px] mt-0.5">
                       {member.detail}
                     </p>
                   )}
@@ -500,7 +500,7 @@ export default function AboutPage() {
           <div className="flex justify-center gap-4 flex-wrap relative z-10">
             <a
               href="/contact"
-              className="bg-[#ffa200] text-white font-bold px-6 py-2.5 rounded-lg text-sm hover:opacity-90 hover:shadow-[0_8px_24px_rgba(255,162,0,0.35)] transition-all"
+              className="bg-[#ffa200] text-blue-950 font-bold px-6 py-2.5 rounded-lg text-sm hover:opacity-90 hover:shadow-[0_8px_24px_rgba(255,162,0,0.35)] transition-all"
             >
               Join Free — No Cost →
             </a>

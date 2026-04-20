@@ -1,6 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+
+   const router = useRouter();
   const plans = [
     {
       name: "Starter Franchise",
@@ -80,6 +83,16 @@ export default function Page() {
     <main className="bg-white text-black pt-28 pb-20">
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6">
+         <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)",
+            backgroundSize: "60px 60px",
+            maskImage:
+              "radial-gradient(ellipse at 50% 40%, black 20%, transparent 75%)",
+          }}
+        />
         <div className="rounded-3xl border border-blue-900/15 bg-gradient-to-br from-white via-blue-50 to-blue-100/70 p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -148,11 +161,10 @@ export default function Page() {
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative flex flex-col rounded-2xl border p-6 md:p-7 ${
-                plan.featured
+              className={`relative flex flex-col rounded-2xl border p-6 md:p-7 ${plan.featured
                   ? "border-blue-700 bg-blue-900 text-white shadow-[0_18px_45px_rgba(15,23,42,0.35)]"
                   : "border-blue-900/15 bg-white"
-              }`}
+                }`}
             >
               {plan.featured && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-1 text-[11px] font-bold tracking-[2px] uppercase text-blue-950 shadow-md">
@@ -160,33 +172,29 @@ export default function Page() {
                 </span>
               )}
               <p
-                className={`text-[11px] font-bold tracking-[2px] uppercase ${
-                  plan.featured ? "text-blue-100" : "text-blue-700"
-                }`}
+                className={`text-[11px] font-bold tracking-[2px] uppercase ${plan.featured ? "text-blue-100" : "text-blue-700"
+                  }`}
               >
                 {plan.badge}
               </p>
               <h3
-                className={`mt-2 text-xl font-extrabold ${
-                  plan.featured ? "text-white" : "text-blue-950"
-                }`}
+                className={`mt-2 text-xl font-extrabold ${plan.featured ? "text-white" : "text-blue-950"
+                  }`}
               >
                 {plan.name}
               </h3>
               <div className="mt-4 flex items-baseline gap-2">
                 <span className="text-3xl font-extrabold">{plan.price}</span>
                 <span
-                  className={`text-xs font-medium ${
-                    plan.featured ? "text-blue-100/80" : "text-black/60"
-                  }`}
+                  className={`text-xs font-medium ${plan.featured ? "text-blue-100/80" : "text-black/60"
+                    }`}
                 >
                   {plan.priceMeta}
                 </span>
               </div>
               <p
-                className={`mt-3 text-sm ${
-                  plan.featured ? "text-blue-100" : "text-black/70"
-                }`}
+                className={`mt-3 text-sm ${plan.featured ? "text-blue-100" : "text-black/70"
+                  }`}
               >
                 {plan.highlight}
               </p>
@@ -197,9 +205,8 @@ export default function Page() {
                     className="flex items-start gap-2 leading-relaxed"
                   >
                     <span
-                      className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${
-                        plan.featured ? "bg-amber-300" : "bg-blue-700"
-                      }`}
+                      className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${plan.featured ? "bg-amber-300" : "bg-blue-700"
+                        }`}
                     />
                     <span>{item}</span>
                   </li>
@@ -207,11 +214,11 @@ export default function Page() {
               </ul>
               <button
                 type="button"
-                className={`mt-6 w-full rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                  plan.featured
+                onClick={() => router.push("/contact")}
+                className={`mt-6 w-full rounded-xl cursor-pointer px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${plan.featured
                     ? "bg-amber-400 text-blue-950 hover:bg-amber-300"
                     : "bg-blue-900 text-white hover:bg-blue-800"
-                }`}
+                  }`}
               >
                 Talk to AIshyp team
               </button>

@@ -247,6 +247,16 @@ export default function FeaturesPage() {
   return (
     <main className="bg-white text-black pt-28 pb-20">
       <section className="max-w-6xl mx-auto px-6">
+         <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)",
+            backgroundSize: "60px 60px",
+            maskImage:
+              "radial-gradient(ellipse at 50% 40%, black 20%, transparent 75%)",
+          }}
+        />
         <div className="rounded-3xl border border-blue-900/15 bg-gradient-to-br from-white via-blue-50 to-blue-100/70 p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
