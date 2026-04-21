@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AppToaster from "./components/AppToaster";
+import WhatsappButton from "./components/WhatsappButton";
 import { ThemeProvider } from "../lib/ThemeProvider";
 import { THEME_INIT_SCRIPT, THEME_LIGHT } from "../lib/theme";
 
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <Footer />
+          <WhatsappButton />
         </ThemeProvider>
       </body>
     </html>
