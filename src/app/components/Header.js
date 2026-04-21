@@ -123,7 +123,7 @@ export default function Header() {
           <Link href="/" className="flex items-center no-underline">
             <div className="relative w-[220px] h-[150px] md:w-[320px] md:h-[120px] flex items-center justify-center overflow-hidden flex-shrink-0 -ml-2">
               <Image
-                src="/AIship1.png"
+                src={isMounted && isDark ? "/aishipwhite.png" : "/AIship1.png"}
                 alt="AIShip logo"
                 fill
                 className="object-contain"
