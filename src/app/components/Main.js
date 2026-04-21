@@ -683,9 +683,9 @@ export default function LandingPage() {
               transform: heroVisible ? "translateY(0)" : "translateY(-12px)",
               transition: "all 0.7s ease 0.15s",
             }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30  text-blue-950 text-xs font-semibold tracking-widest uppercase mb-8"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200] text-blue-950 animate-pulse" />
             Franchise-Driven Shipping Aggregator Platform
           </div>
 
@@ -889,10 +889,10 @@ export default function LandingPage() {
                       {s.points.map((point, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-gray-700 text-sm"
+                          className="flex items-start gap-3 text-black-700 text-sm"
                         >
                           <span
-                            className={`mt-2 w-2 h-2 rounded-full bg-current ${s.accent}`}
+                            className={`mt-2 w-2 h-2 rounded-full text-black bg-current `}
                           />
                           <span>{point}</span>
                         </li>
@@ -910,7 +910,7 @@ export default function LandingPage() {
       <section className="bg-white">
         <div className="max-w-6xl mx-auto px-6 pb-6 md:pb-12">
           <Reveal className="text-center mb-10">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30  text-blue-950 text-xs font-semibold tracking-widest uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200]" />
               Platform Preview
             </span>
@@ -974,7 +974,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6 py-20">
           {/* Header */}
           <div className="text-center mb-10">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30 bg-[#ffa200]/10 text-blue-950 text-xs font-semibold tracking-widest uppercase">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#ffa200]/30  text-blue-950 text-xs font-semibold tracking-widest uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ffa200]" />
               ⚡ Simple Process
             </span>
@@ -1197,7 +1197,7 @@ export default function LandingPage() {
 
         {/* Market validation callout */}
         <Reveal>
-          <div className="p-7 rounded-2xl border border-[#ffa200]/20 bg-[#ffa200]/5 flex flex-col md:flex-row items-start md:items-center gap-5">
+          <div className="p-7 rounded-2xl border border-[#ffa200]/20  flex flex-col md:flex-row items-start md:items-center gap-5">
             <div className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#ffa200]/15 border border-[#ffa200]/30 text-blue-950">
               <svg
                 width="22"
@@ -1327,16 +1327,16 @@ export default function LandingPage() {
               {advantages.map((f) => (
                 <div
                   key={f.title}
-                  className="flex items-start gap-3 p-4 rounded-xl border border-black/8 bg-black/[0.02] hover:border-[#ffa200]/20 hover:bg-[#ffa200]/5 transition-all duration-200"
+                  className="flex items-start gap-3 p-4 rounded-xl border border-black/8 transition-all duration-200"
                 >
-                  <div className="w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center bg-[#ffa200]/10 border border-[#ffa200]/20 mt-0.5 text-lg">
+                  <div className="w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-cente border border-[#ffa200]/20 mt-0.5 text-lg">
                     {f.icon}
                   </div>
                   <div>
                     <p className="text-sm font-bold text-black leading-snug">
                       {f.title}
                     </p>
-                    <p className="text-xs text-black/38 mt-0.5 leading-relaxed">
+                    <p className="text-xs text-black mt-0.5 leading-relaxed">
                       {f.desc}
                     </p>
                   </div>
@@ -1973,7 +1973,7 @@ export default function LandingPage() {
           </Reveal>
 
           <Reveal>
-            <div className="p-8 md:p-10 rounded-3xl border border-[#ffa200]/20 bg-[#ffa200]/5 text-center">
+            <div className="p-8 md:p-10 rounded-3xl border border-[#ffa200]/20  text-center">
               <div className="flex gap-1 justify-center mb-6">
                 {[...Array(5)].map((_, j) => (
                   <svg

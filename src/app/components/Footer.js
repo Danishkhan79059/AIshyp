@@ -1,4 +1,6 @@
 "use client"
+import { useState } from "react"
+import { toast } from "react-hot-toast"
 import Image from "next/image"
 import Link from "next/link"
 import { SITE_THEME } from "../theme"
@@ -6,6 +8,43 @@ import { SITE_THEME } from "../theme"
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   const theme = SITE_THEME
+  const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubscribe = async (event) => {
+    event.preventDefault()
+
+    const normalizedEmail = email.trim().toLowerCase()
+    if (!normalizedEmail) {
+      toast.error("Please enter your email.")
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: normalizedEmail }),
+      })
+
+      const data = await response.json()
+      if (!response.ok) {
+        toast.error(data?.error || "Subscription failed. Please try again.")
+        return
+      }
+
+      toast.success(data?.message || "Subscribed successfully.")
+      setEmail("")
+    } catch {
+      toast.error("Network error. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const links = {
     Company: [
@@ -88,19 +127,25 @@ export default function Footer() {
           <div className="max-w-6xl mx-auto px-6 py-12 text-center">
             <p className="text-2xl md:text-3xl font-bold tracking-tight">Stay updated with AIShyp</p>
             <p className="text-black/55 text-sm mt-2">Get delivery tips, offers & logistics news.</p>
-            <div className="mt-6 flex items-center justify-center gap-2 w-full">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full max-w-sm px-4 py-2.5 rounded-full bg-white border border-blue-200 text-sm text-black placeholder-black/40 outline-none focus:border-blue-400 transition-colors duration-200"
-              />
-              <button
-                className="px-6 py-2.5 rounded-full text-sm font-semibold text-white flex-shrink-0 transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
-                style={{ background: theme.colors.accentGradient }}
-              >
-                Subscribe
-              </button>
-            </div>
+            <form onSubmit={handleSubscribe} className="mt-6 w-full">
+              <div className="flex items-center justify-center gap-2 w-full">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full max-w-sm px-4 py-2.5 rounded-full bg-white border border-blue-200 text-sm text-black placeholder-black/40 outline-none focus:border-blue-400 transition-colors duration-200"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 py-2.5 rounded-full text-sm font-semibold text-white flex-shrink-0 transition-all duration-200 hover:opacity-90 hover:-translate-y-px disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                  style={{ background: theme.colors.accentGradient }}
+                >
+                  {isSubmitting ? "Subscribing..." : "Subscribe"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
 

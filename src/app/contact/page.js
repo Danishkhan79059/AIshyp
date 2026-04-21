@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { toast } from "react-hot-toast"
 const infoCards = [
   {
     label: "Phone",
@@ -78,7 +79,7 @@ const steps = [
 ]
 
 const inputClass =
-  "w-full bg-white border border-black/12 rounded-xl px-4 py-3 text-sm text-black placeholder-black/30 outline-none focus:border-[#ffa200]/70 focus:ring-2 focus:ring-[#ffa200]/10 transition-all duration-200"
+  "w-full border border-black/12 rounded-xl px-4 py-3 text-sm text-black placeholder-black/30 outline-none focus:border-[#ffa200]/70 focus:ring-2 focus:ring-[#ffa200]/10 transition-all duration-200"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -128,10 +129,11 @@ export default function ContactPage() {
         throw new Error(result?.error || "Failed to submit enquiry")
       }
 
+      toast.success("Enquiry submitted successfully. We will contact you soon.")
       setSubmitState({
         loading: false,
         error: "",
-        success: "Enquiry submitted successfully. We will contact you soon.",
+        success: "",
       })
       setFormData({
         name: "",
@@ -143,9 +145,10 @@ export default function ContactPage() {
         message: "",
       })
     } catch (error) {
+      toast.error(error?.message || "Something went wrong. Please try again.")
       setSubmitState({
         loading: false,
-        error: error?.message || "Something went wrong. Please try again.",
+        error: "",
         success: "",
       })
     }
@@ -203,14 +206,14 @@ export default function ContactPage() {
         {infoCards.map((card, i) => (
           <div
             key={card.label}
-            className="flex items-center gap-3 rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.04)] px-4 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,162,0,0.4)]"
+            className="flex items-center gap-3 rounded-2xl border border-[rgba(255,162,0,0.18)]  px-4 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,162,0,0.4)]"
             style={{ animationDelay: `${i * 0.1}s` }}
           >
             <div className="w-10 h-10 rounded-xl bg-[rgba(255,162,0,0.12)] border border-[rgba(255,162,0,0.2)] flex items-center justify-center shrink-0">
               {card.icon}
             </div>
             <div>
-              <div className="text-[10px] uppercase tracking-[1.5px] text-black/40 mb-0.5">
+              <div className="text-[10px] uppercase tracking-[1.5px] text-black mb-0.5">
                 {card.label}
               </div>
               {card.href ? (
@@ -232,7 +235,7 @@ export default function ContactPage() {
       <section className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-6">
 
         {/* Contact Form */}
-        <div className="lg:col-span-3 rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.03)] p-6 md:p-8">
+        <div className="lg:col-span-3 rounded-2xl border border-[rgba(255,162,0,0.18)]  p-6 md:p-8">
           <h2 className="text-2xl font-medium text-blue-950 mb-1">
             Send us a message
           </h2>
@@ -246,11 +249,11 @@ export default function ContactPage() {
               <input className={inputClass} type="text" name="name" placeholder="Rahul Sharma" value={formData.name} onChange={handleChange} />
             </div>
             <div>
-              <label className="text-[13px] text-black/65 block mb-2">Work Email</label>
+              <label className="text-[13px] text-black block mb-2">Work Email</label>
               <input className={inputClass} type="email" name="email" placeholder="shyp@company.com" value={formData.email} onChange={handleChange} />
             </div>
             <div>
-              <label className="text-[13px] text-black/65 block mb-2">Phone Number</label>
+              <label className="text-[13px] text-black block mb-2">Phone Number</label>
               <input className={inputClass} type="tel" name="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} />
             </div>
             <div>
@@ -300,12 +303,6 @@ export default function ContactPage() {
               <span className="text-xs text-black/35">
                 We'll respond within 2 business hours
               </span>
-              {submitState.error ? (
-                <p className="w-full text-sm text-red-600">{submitState.error}</p>
-              ) : null}
-              {submitState.success ? (
-                <p className="w-full text-sm text-green-700">{submitState.success}</p>
-              ) : null}
             </div>
           </form>
         </div>
@@ -314,7 +311,7 @@ export default function ContactPage() {
         <div className="lg:col-span-2 flex flex-col gap-5">
 
           {/* Why Aishyp */}
-          <div className="rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.03)] p-6">
+          <div className="rounded-2xl border border-[rgba(255,162,0,0.18)] ">
             <h2 className="text-lg font-medium text-blue-950 mb-4">
               Why contact Aishyp?
             </h2>
@@ -332,7 +329,7 @@ export default function ContactPage() {
           </div>
 
           {/* What Happens Next */}
-          <div className="rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.03)] p-6">
+          <div className="rounded-2xl border border-[rgba(255,162,0,0.18)] ] p-6">
             <h2 className="text-lg font-medium text-blue-950 mb-5">
               What happens next?
             </h2>
@@ -353,7 +350,7 @@ export default function ContactPage() {
           </div>
 
           {/* Urgent CTA */}
-          <div className="rounded-2xl border border-[rgba(255,162,0,0.35)] bg-[rgba(255,162,0,0.08)] p-5">
+          <div className="rounded-2xl border border-[rgba(255,162,0,0.35)]  p-5">
             <p className="text-sm text-black/85 leading-relaxed">
               For urgent assistance, call{" "}
               <a

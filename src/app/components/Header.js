@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SITE_THEME } from "../theme";
+import { useTheme } from "../../lib/ThemeProvider";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,7 @@ export default function Header() {
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [mobileFeaturesOpen, setMobileFeaturesOpen] = useState(false);
   const featuresCloseTimeoutRef = useRef(null);
+  const { isDark, isMounted, toggleTheme } = useTheme();
 
   const openFeaturesMenu = () => {
     if (featuresCloseTimeoutRef.current) {
@@ -61,7 +63,7 @@ export default function Header() {
       label: "Home",
       href: "/",
     },
-     {
+    {
       label: "Pricing",
       href: "/pricing",
     },
@@ -82,17 +84,19 @@ export default function Header() {
           href: "/integration",
           desc: "Connect courier partners and tools",
         },
-         {
+        {
           label: "Features",
           href: "/features",
-         desc: "Platform Features",
+          desc: "Platform Features",
         },
-    
       ],
     },
   ];
 
   const theme = SITE_THEME;
+  const themeToggleTitle = isMounted
+    ? `Switch to ${isDark ? "light" : "dark"} mode`
+    : "Toggle theme";
 
   return (
     <>
@@ -106,7 +110,9 @@ export default function Header() {
         style={
           scrolled
             ? {
-                background: "rgba(255,255,255,0.96)",
+                background: isDark
+                  ? "rgba(15,23,42,0.92)"
+                  : "rgba(255,255,255,0.96)",
                 borderColor: theme.colors.border,
               }
             : undefined
@@ -134,7 +140,7 @@ export default function Header() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="group relative flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] font-bold tracking-wide text-black/70 transition-all duration-200 "
+                    className={`group relative flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] font-bold tracking-wide transition-all duration-200 ${isDark ? "text-white/80" : "text-black/70"}`}
                   >
                     <span className="opacity-70">{link.icon}</span>
                     {link.label}
@@ -157,7 +163,7 @@ export default function Header() {
                 >
                   <button
                     type="button"
-                    className="group relative flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] font-bold tracking-wide text-black/70 transition-all duration-200"
+                    className={`group relative flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] font-bold tracking-wide transition-all duration-200 ${isDark ? "text-white/80" : "text-black/70"}`}
                     onClick={() => setFeaturesOpen((prev) => !prev)}
                     onFocus={openFeaturesMenu}
                     onBlur={closeFeaturesMenuWithDelay}
@@ -181,7 +187,7 @@ export default function Header() {
                   </button>
 
                   <div
-                    className={`absolute top-full right-0 mt-2 w-72 rounded-2xl border border-black/10 bg-white shadow-[0_20px_45px_rgba(17,24,39,0.13)] p-2 transition-all duration-200 ${
+                    className={`absolute top-full right-0 mt-2 w-72 rounded-2xl border p-2 transition-all duration-200 shadow-[0_20px_45px_rgba(17,24,39,0.13)] ${isDark ? "border-white/20 bg-slate-900" : "border-black/10 bg-white"} ${
                       featuresOpen
                         ? "opacity-100 translate-y-0 pointer-events-auto"
                         : "opacity-0 -translate-y-2 pointer-events-none"
@@ -193,11 +199,19 @@ export default function Header() {
                       <Link
                         key={item.label}
                         href={item.href}
-                        className="block rounded-xl px-3 py-2.5 hover:bg-[#ffa200]/10 transition-colors duration-200"
+                        className={`block rounded-xl px-3 py-2.5 transition-colors duration-200 ${isDark ? "hover:bg-white/10" : "hover:bg-[#ffa200]/10"}`}
                         onClick={() => setFeaturesOpen(false)}
                       >
-                        <p className="text-sm font-semibold text-blue-950">{item.label}</p>
-                        <p className="text-xs text-black/55 mt-0.5">{item.desc}</p>
+                        <p
+                          className={`text-sm font-semibold ${isDark ? "text-blue-200" : "text-blue-950"}`}
+                        >
+                          {item.label}
+                        </p>
+                        <p
+                          className={`text-xs mt-0.5 ${isDark ? "text-white/60" : "text-black/55"}`}
+                        >
+                          {item.desc}
+                        </p>
                       </Link>
                     ))}
                   </div>
@@ -208,6 +222,40 @@ export default function Header() {
 
           {/* ── CTA BUTTONS ── */}
           <div className="hidden md:flex items-center gap-3">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+              title={themeToggleTitle}
+              className={`inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition-colors duration-300 ${
+                isDark
+                  ? "border-white/20 bg-slate-800 text-yellow-300 hover:bg-slate-700"
+                  : "border-black/10 bg-white text-slate-800 hover:bg-slate-100"
+              }`}
+            >
+              {isDark ? (
+                // 🌙 Moon Icon (Dark Mode)
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-white"
+                >
+                  <path d="M21 12.79A9 9 0 0 1 11.21 3a1 1 0 0 0-1.24-1.16A10 10 0 1 0 22.16 14a1 1 0 0 0-1.16-1.21z" />
+                </svg>
+              ) : (
+                // ⭐ Star Icon (Light Mode)
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l7.1-1.01L12 2z" />
+                </svg>
+              )}
+            </button>
             <a
               href="#"
               className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(96,165,250,0.35)] group"
@@ -219,7 +267,7 @@ export default function Header() {
                   background: "linear-gradient(90deg, #1e3a8a, #172554)",
                 }}
               />
-             Ship now
+              Ship now
               <svg
                 width="14"
                 height="14"
@@ -238,13 +286,23 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-6 h-0.5 rounded transition-all duration-300 origin-center ${menuOpen ? "translate-y-[7px] rotate-45 bg-[#ffa200]" : "bg-black"}`}
+              className={`block w-6 h-0.5 rounded transition-all duration-300 origin-center ${
+                menuOpen
+                  ? "translate-y-[7px] rotate-45 bg-red-500"
+                  : "bg-red-500"
+              }`}
             />
             <span
-              className={`block w-6 h-0.5 rounded transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : "bg-black"}`}
+              className={`block w-6 h-0.5 rounded transition-all duration-300 ${
+                menuOpen ? "opacity-0 scale-x-0" : "bg-red-500"
+              }`}
             />
             <span
-              className={`block w-6 h-0.5 rounded transition-all duration-300 origin-center ${menuOpen ? "-translate-y-[7px] -rotate-45 bg-[#ffa200]" : "bg-black"}`}
+              className={`block w-6 h-0.5 rounded transition-all duration-300 origin-center ${
+                menuOpen
+                  ? "-translate-y-[7px] -rotate-45 bg-red-500"
+                  : "bg-red-500"
+              }`}
             />
           </button>
         </div>
@@ -258,7 +316,7 @@ export default function Header() {
             : "opacity-0 -translate-y-3 pointer-events-none"
         }`}
         style={{
-          background: "rgba(255,255,255,0.98)",
+          background: isDark ? "rgba(15,23,42,0.95)" : "rgba(255,255,255,0.98)",
           borderColor: theme.colors.border,
           backdropFilter: "blur(20px)",
         }}
@@ -270,10 +328,12 @@ export default function Header() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-[15px] font-medium border-l-2 transition-all duration-200 hover:text-blue-950 hover:border-[#ffa200] hover:bg-[#ffa200]/7 ${
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-[15px] font-medium border-l-2 transition-all duration-200  ${
                   i === 0
-                    ? "text-blue-950 border-[#ffa200] bg-[#ffa200]/7"
-                    : "text-black/70 border-transparent"
+                    ? "text-blue-950 border-[#ffa200] "
+                    : isDark
+                      ? "text-back border-transparent"
+                      : "text-black/70 border-transparent"
                 }`}
               >
                 <span className="opacity-60">{link.icon}</span>
@@ -283,11 +343,14 @@ export default function Header() {
           }
 
           return (
-            <div key={link.label} className="rounded-xl border border-black/10 overflow-hidden">
+            <div
+              key={link.label}
+              className={`rounded-xl overflow-hidden ${isDark ? "border border-white/20" : "border border-black/10"}`}
+            >
               <button
                 type="button"
                 onClick={() => setMobileFeaturesOpen((prev) => !prev)}
-                className="w-full flex items-center justify-between px-4 py-3.5 text-[15px] font-medium text-black/75 bg-white hover:bg-[#ffa200]/7 transition-colors duration-200"
+                className={`w-full flex items-center justify-between px-4 py-3.5 text-[15px] font-medium transition-colors duration-200 ${isDark ? "text-white bg-slate-900 hover:bg-slate-800" : "text-black bg-white hover:bg-[#ffa200]/7"}`}
               >
                 <span>{link.label}</span>
                 <svg
@@ -301,7 +364,9 @@ export default function Header() {
                 </svg>
               </button>
 
-              <div className={`${mobileFeaturesOpen ? "block" : "hidden"} bg-white border-t border-black/10`}>
+              <div
+                className={`${mobileFeaturesOpen ? "block" : "hidden"} ${isDark ? "bg-slate-900 border-t border-white/20" : "bg-white border-t border-black/10"}`}
+              >
                 {link.submenu.map((item) => (
                   <Link
                     key={item.label}
@@ -310,7 +375,7 @@ export default function Header() {
                       setMenuOpen(false);
                       setMobileFeaturesOpen(false);
                     }}
-                    className="block px-4 py-3 text-sm text-black/70 hover:text-blue-950 hover:bg-[#ffa200]/7 transition-colors duration-200"
+                    className={`block px-4 py-3 text-sm transition-colors duration-200 ${isDark ? "text-white/75 hover:text-white hover:bg-slate-800" : "text-black/70 hover:text-blue-950 hover:bg-[#ffa200]/7"}`}
                   >
                     {item.label}
                   </Link>
@@ -323,13 +388,47 @@ export default function Header() {
         <div className="h-px bg-black/10 my-2" />
 
         <div className="flex flex-col gap-2.5">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+            title={themeToggleTitle}
+            className={`flex justify-center items-center py-2.5 rounded-xl border transition-all duration-200 ${
+              isDark
+                ? "text-yellow-300 border-white/20 bg-slate-800 hover:bg-slate-700"
+                : "text-slate-800 border-black/15 bg-white hover:bg-black/5"
+            }`}
+          >
+            {isDark ? (
+              // 🌙 Moon (Dark Mode)
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="text-white"
+              >
+                <path d="M21 12.79A9 9 0 0 1 11.21 3a1 1 0 0 0-1.24-1.16A10 10 0 1 0 22.16 14a1 1 0 0 0-1.16-1.21z" />
+              </svg>
+            ) : (
+              // ⭐ Star (Light Mode)
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l7.1-1.01L12 2z" />
+              </svg>
+            )}
+          </button>
           <a
             href="#"
             onClick={() => setMenuOpen(false)}
             className="flex justify-center items-center gap-2 py-3 rounded-xl text-[14px] font-semibold text-white hover:opacity-90 transition-all duration-200"
             style={{ background: theme.colors.accentGradient }}
           >
-           Ship now
+            Ship now
           </a>
         </div>
       </nav>

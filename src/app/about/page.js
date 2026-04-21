@@ -211,7 +211,7 @@ export default function AboutPage() {
                 </a>
               </div>
               <div className="flex flex-col gap-2 w-full">
-                <div className="flex items-center gap-2 bg-[rgba(255,162,0,0.07)] border border-[rgba(255,162,0,0.15)] rounded-lg px-3 py-2">
+                <div className="flex items-center gap-2  border border-[rgba(255,162,0,0.15)] rounded-lg px-3 py-2">
                   <svg
                     width="11"
                     height="11"
@@ -227,7 +227,7 @@ export default function AboutPage() {
                     IIM Mumbai Alumni
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-[rgba(255,162,0,0.07)] border border-[rgba(255,162,0,0.15)] rounded-lg px-3 py-2">
+                <div className="flex items-center gap-2  border border-[rgba(255,162,0,0.15)] rounded-lg px-3 py-2">
                   <svg
                     width="11"
                     height="11"
@@ -338,7 +338,7 @@ export default function AboutPage() {
           ].map((item, i) => (
             <div
               key={item.label}
-              className="rounded-2xl border border-[rgba(255,162,0,0.2)] bg-[rgba(255,162,0,0.06)] p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#ffa200] hover:shadow-[0_4px_20px_rgba(255,162,0,0.08)]"
+              className="rounded-2xl border border-[rgba(255,162,0,0.2)]  p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#ffa200] hover:shadow-[0_4px_20px_rgba(255,162,0,0.08)]"
             >
               <p ref={item.ref} className="text-3xl font-bold text-blue-950">
                 {item.initial}
@@ -357,7 +357,7 @@ export default function AboutPage() {
       {/* ══ TEAM PHOTO CARDS ══ */}
       <section className="max-w-5xl mx-auto mb-14">
         <div className="mb-3">
-          <span className="inline-block bg-[rgba(255,162,0,0.15)] text-blue-950 text-[11px] font-semibold tracking-[3px] uppercase px-3 py-1 rounded-full border border-[rgba(255,162,0,0.3)]">
+          <span className="inline-block  text-blue-950 text-[11px] font-semibold tracking-[3px] uppercase px-3 py-1 rounded-full border border-[rgba(255,162,0,0.3)]">
             Our Team
           </span>
         </div>
@@ -387,7 +387,7 @@ export default function AboutPage() {
                 {/* Founder badge */}
                 {member.isFounder && (
                   <div className="absolute top-3 right-3">
-                    <span className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#ffa200] text-white shadow-md">
+                    <span className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full  text-white shadow-md">
                       Founder
                     </span>
                   </div>
@@ -414,7 +414,7 @@ export default function AboutPage() {
         </div>
 
         {/* Team quote */}
-        <div className="mt-8 rounded-xl border border-[rgba(255,162,0,0.15)] bg-[rgba(255,162,0,0.03)] p-5 text-center">
+        <div className="mt-8 rounded-xl border border-[rgba(255,162,0,0.15)]  p-5 text-center">
           <p className="text-sm text-black italic leading-relaxed">
             "We're a small team solving a big problem. Every line of code, every
             partner onboarded, every lead delivered — it all adds up."
@@ -433,7 +433,7 @@ export default function AboutPage() {
         {cards.map((card) => (
           <article
             key={card.title}
-            className="rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.04)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,162,0,0.5)] hover:bg-[rgba(255,162,0,0.08)]"
+            className="rounded-2xl border border-[rgba(255,162,0,0.18)]  p-6 transition-all duration-300 hover:-translate-y-1 "
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-9 h-9 rounded-xl bg-[rgba(255,162,0,0.15)] flex items-center justify-center shrink-0">
@@ -449,7 +449,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Our Approach ── */}
-      <section className="max-w-5xl mx-auto rounded-2xl border border-[rgba(255,162,0,0.18)] bg-[rgba(255,162,0,0.04)] p-6 md:p-8 mb-10">
+      <section className="max-w-5xl mx-auto rounded-2xl border border-[rgba(255,162,0,0.18)]  p-6 md:p-8 mb-10">
         <h2 className="text-2xl font-medium text-blue-950">Our Approach</h2>
         <p className="mt-4 text-black leading-relaxed max-w-3xl">
           AIShyp combines aggregation economics, technology, and FranchiseIndia
@@ -475,7 +475,7 @@ export default function AboutPage() {
 
       {/* ── CTA ── */}
       <section className="max-w-5xl mx-auto">
-        <div className="relative overflow-hidden rounded-2xl border border-[rgba(255,162,0,0.25)] bg-[rgba(255,162,0,0.06)] p-8 text-center">
+        <div className="relative overflow-hidden rounded-2xl border border-[rgba(255,162,0,0.25)]  p-8 text-center">
           <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-52 h-52 rounded-full bg-[radial-gradient(circle,rgba(255,162,0,0.1)_0%,transparent_70%)]" />
           <div
             className="absolute inset-0 pointer-events-none"
