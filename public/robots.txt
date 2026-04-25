@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aishyp.com
+
+# Sitemaps
+Sitemap: https://aishyp.com/sitemap.xml

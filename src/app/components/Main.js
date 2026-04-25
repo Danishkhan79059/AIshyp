@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import { CheckCircle, Truck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import FAQ from "../../components/FAQ";
+import { buildFaqSchema, faqItems } from "../../data/faq";
 
 /* ─── count-up hook ─── */
 function useCountUp(target, duration = 2000, start = false) {
@@ -104,6 +107,8 @@ export default function LandingPage() {
   const [activePreviewTab, setActivePreviewTab] = useState("dashboard");
   const [howVideoOpen, setHowVideoOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
+  const homeFaqItems = faqItems.slice(0, 8);
+  const homeFaqSchema = buildFaqSchema(homeFaqItems);
 
 
 
@@ -518,6 +523,10 @@ export default function LandingPage() {
 
   return (
     <main className="bg-white text-black overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqSchema) }}
+      />
       {/* ══ HERO ══ */}
       <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-20">
         {/* grid bg */}
@@ -864,10 +873,13 @@ export default function LandingPage() {
                   {/* IMAGE */}
                   <div className="md:w-1/2">
                     <div className="w-full h-[50%] flex items-center justify-center bg-gray-100 rounded-2xl shadow-lg p-2">
-                      <img
+                      <Image
                         src={s.img}
                         alt={s.title}
+                        width={900}
+                        height={560}
                         className="w-full h-auto object-contain rounded-2xl"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -957,11 +969,13 @@ export default function LandingPage() {
                   </span>
                 </div>
 
-                <img
+                <Image
                   src={activePreview.image}
                   alt={activePreview.alt}
-                  loading="lazy"
+                  width={1200}
+                  height={720}
                   className="w-full h-auto object-cover transition-all duration-300"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1054,10 +1068,13 @@ export default function LandingPage() {
             {/* Right Image */}
             <div className="relative">
               <div className="bg-white rounded-2xl border border-black/10 shadow-xl p-4">
-                <img
+                <Image
                   src={current.image}
-                  alt="step"
+                  alt={`${current.title} step illustration`}
+                  width={900}
+                  height={560}
                   className="w-full h-[280px] object-cover rounded-xl"
+                  loading="lazy"
                 />
               </div>
 
@@ -1892,9 +1909,11 @@ export default function LandingPage() {
                           key={`${logo}-${index}`}
                           className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto border border-black/10 shadow-[0_18px_50px_rgba(17,24,39,0.10)]"
                         >
-                          <img
+                          <Image
                             src={logo}
-                            alt="logo"
+                            alt="Courier partner logo"
+                            width={64}
+                            height={64}
                             loading="lazy"
                             className="w-16 h-16 object-contain"
                           />
@@ -2085,7 +2104,7 @@ export default function LandingPage() {
                   {card.desc}
                 </p>
                 <a
-                  href="#"
+                  href="/contact"
                   className="inline-flex items-center gap-1 text-xs text-blue-950 font-bold hover:gap-2 transition-all duration-200"
                 >
                   {card.cta}
@@ -2126,7 +2145,7 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href="#"
+                  href="/contact"
                   className="relative overflow-hidden flex items-center gap-2 px-8 py-3.5 rounded-xl text-[15px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(96,165,250,0.35)] group"
                   style={{
                     background: "linear-gradient(90deg, #1e3a8a, #172554)",
@@ -2142,7 +2161,7 @@ export default function LandingPage() {
                   Join the Network — It's Free
                 </a>
                 <a
-                  href="#"
+                  href="/contact"
                   className="flex items-center gap-2 px-8 py-3.5 rounded-xl text-[15px] font-semibold text-black/65 border border-black/15 hover:text-black hover:border-black/30 hover:bg-black/5 transition-all duration-300"
                 >
                   Contact for Investment
@@ -2159,6 +2178,18 @@ export default function LandingPage() {
             </div>
           </div>
         </Reveal>
+      </section>
+
+      <section className="py-8">
+        <FAQ
+          items={homeFaqItems}
+          title="Frequently Asked Questions"
+          subtitle="Quick answers about AIShyp's franchise-driven shipping aggregator platform."
+          maxItems={8}
+          showSearch={false}
+          showCategoryFilter={false}
+          showCta={true}
+        />
       </section>
 
       {/* ══ FOOTER ══ */}

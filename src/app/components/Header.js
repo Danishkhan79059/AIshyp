@@ -76,6 +76,10 @@ export default function Header() {
       href: "/contact",
     },
     {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
       label: "Features",
       href: "/features",
       submenu: [
@@ -88,6 +92,16 @@ export default function Header() {
           label: "Features",
           href: "/features",
           desc: "Platform Features",
+        },
+        {
+          label: "FAQ",
+          href: "/faq",
+          desc: "Shipping and franchise FAQs",
+        },
+        {
+          label: "Logistics Library",
+          href: "/encyclopedia",
+          desc: "Knowledge hub for shipping terms",
         },
       ],
     },
@@ -142,7 +156,6 @@ export default function Header() {
                     href={link.href}
                     className={`group relative flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] font-bold tracking-wide transition-all duration-200 ${isDark ? "text-white/80" : "text-black/70"}`}
                   >
-                    <span className="opacity-70">{link.icon}</span>
                     {link.label}
                     <span
                       className="absolute bottom-[6px] left-4 right-4 h-[2px] rounded-full scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"
@@ -256,8 +269,8 @@ export default function Header() {
                 </svg>
               )}
             </button>
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(96,165,250,0.35)] group"
               style={{ background: theme.colors.accentGradient }}
             >
@@ -276,7 +289,7 @@ export default function Header() {
               >
                 <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               </svg>
-            </a>
+            </Link>
           </div>
 
           {/* ── HAMBURGER ── */}
@@ -332,11 +345,10 @@ export default function Header() {
                   i === 0
                     ? "text-blue-950 border-[#ffa200] "
                     : isDark
-                      ? "text-back border-transparent"
+                      ? "text-white/80 border-transparent"
                       : "text-black/70 border-transparent"
                 }`}
               >
-                <span className="opacity-60">{link.icon}</span>
                 {link.label}
               </Link>
             );
@@ -422,14 +434,14 @@ export default function Header() {
               </svg>
             )}
           </button>
-          <a
-            href="#"
+          <Link
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             className="flex justify-center items-center gap-2 py-3 rounded-xl text-[14px] font-semibold text-white hover:opacity-90 transition-all duration-200"
             style={{ background: theme.colors.accentGradient }}
           >
             Ship now
-          </a>
+          </Link>
         </div>
       </nav>
     </>

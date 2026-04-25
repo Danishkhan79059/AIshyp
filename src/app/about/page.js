@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const team = [
   {
@@ -175,10 +177,13 @@ export default function AboutPage() {
             <div className="flex flex-col items-center gap-4 md:w-52 shrink-0">
               <div className="relative">
                 <div className="w-44 h-44 rounded-2xl border-2 border-[rgba(255,162,0,0.5)] overflow-hidden shadow-xl">
-                  <img
+                  <Image
                     src={PHOTOS.mohit}
                     alt="Mohit Panwar"
+                    fill
+                    sizes="176px"
                     className="w-full h-full object-cover object-center"
+                    priority
                   />
                 </div>
                 <div className="absolute -inset-2 rounded-2xl bg-[rgba(255,162,0,0.06)] -z-10 blur-sm" />
@@ -377,9 +382,11 @@ export default function AboutPage() {
             >
               {/* Photo */}
               <div className="relative h-60 overflow-hidden bg-black/5">
-                <img
+                <Image
                   src={PHOTOS[member.key]}
                   alt={member.name}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 33vw"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Gradient overlay */}
@@ -498,18 +505,18 @@ export default function AboutPage() {
             all from one platform, for free.
           </p>
           <div className="flex justify-center gap-4 flex-wrap relative z-10">
-            <a
+            <Link
               href="/contact"
               className="bg-[#ffa200] text-blue-950 font-bold px-6 py-2.5 rounded-lg text-sm hover:opacity-90 hover:shadow-[0_8px_24px_rgba(255,162,0,0.35)] transition-all"
             >
               Join Free — No Cost →
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className="border border-[rgba(255,162,0,0.4)] text-blue-950 px-6 py-2.5 rounded-lg text-sm hover:border-[#ffa200] hover:bg-[rgba(255,162,0,0.05)] transition-all"
             >
               Talk to Investors →
-            </a>
+            </Link>
           </div>
         </div>
       </section>

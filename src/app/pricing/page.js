@@ -1,9 +1,20 @@
 "use client";
 import { useRouter } from "next/navigation";
+import FAQ from "../../components/FAQ";
+import { buildFaqSchema, faqItems } from "../../data/faq";
 
 export default function Page() {
 
    const router = useRouter();
+   const pricingFaqItems = faqItems
+    .filter(
+      (item) =>
+        item.category === "Courier Franchise" ||
+        item.category === "Shipping Aggregator" ||
+        item.category === "RTO & NDR",
+    )
+    .slice(0, 10);
+  const pricingFaqSchema = buildFaqSchema(pricingFaqItems);
   const plans = [
     {
       name: "Starter Franchise",
@@ -60,27 +71,12 @@ export default function Page() {
     "Training modules for franchise ops teams",
   ];
 
-  const faqs = [
-    {
-      q: "What type of platform is AIshyp?",
-      a: "AIshyp is a franchise-driven aggregator platform that empowers regional/city-level partners with a unified tech stack—multiple couriers, tracking, billing, and NDR workflows—all in one place.",
-    },
-    {
-      q: "What charges apply besides the franchise fee?",
-      a: "In addition to your monthly franchise plan, you only pay shipment-wise logistics costs based on your selected couriers and lanes. There are no hidden platform fees or setup charges unless your enterprise scope requires customization.",
-    },
-    {
-      q: "Can I manage more than one city?",
-      a: "Yes. The Growth Franchise plan is designed for multi-city operations, while the Network Enterprise plan is for large aggregators that operate across multiple regions, sub-franchises, or brand outlets.",
-    },
-    {
-      q: "How quickly can we go live?",
-      a: "A standard franchise setup can be completed within 5–7 business days, including onboarding, basic integrations, training, and a first-shipment dry run.",
-    },
-  ];
-
   return (
     <main className="bg-[#eef6ff] text-black pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingFaqSchema) }}
+      />
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6">
          <div
@@ -255,32 +251,16 @@ export default function Page() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-6xl mx-auto px-6 mt-14">
-        <div className="rounded-3xl border border-blue-900/15 bg-white p-6 md:p-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-blue-950">
-              Pricing & franchise FAQs
-            </h2>
-            <p className="mt-3 text-black/70">
-              If you need a franchise-related and detailed commercial breakdown,
-              you can schedule a direct discovery call with the team.
-            </p>
-          </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {faqs.map((item) => (
-              <div
-                key={item.q}
-                className="rounded-2xl border border-blue-900/10 bg-blue-50/60 p-4"
-              >
-                <h3 className="text-sm font-bold text-blue-950">{item.q}</h3>
-                <p className="mt-2 text-sm text-black/75 leading-relaxed">
-                  {item.a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="mt-14">
+        <FAQ
+          items={pricingFaqItems}
+          title="Pricing and Franchise FAQs"
+          subtitle="Detailed answers for franchise pricing, operations, and platform fit."
+          maxItems={10}
+          showSearch={true}
+          showCategoryFilter={true}
+          showCta={true}
+        />
       </section>
     </main>
   );

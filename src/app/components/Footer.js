@@ -49,19 +49,32 @@ export default function Footer() {
   const links = {
     Company: [
       { label: "About Us", href: "/about" },
-      { label: "Our Team", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Press & Media", href: "#" },
+      { label: "Blog", href: "/blog" },
+      { label: "Our Team", href: "/about" },
+      { label: "Careers", href: "/contact" },
+      { label: "Press & Media", href: "/contact" },
       { label: "Contact Us", href: "/contact" },
     ],
-    Services: ["Air Freight", "Sea Freight", "Road Transport", "Warehousing", "Express Delivery"],
-    Support: ["Track Shipment", "Get a Quote", "FAQs", "Help Center", "Terms & Policy"],
+    Services: [
+      { label: "Air Freight", href: "/features" },
+      { label: "Sea Freight", href: "/features" },
+      { label: "Road Transport", href: "/features" },
+      { label: "Warehousing", href: "/features" },
+      { label: "Express Delivery", href: "/features" },
+    ],
+    Support: [
+      { label: "Track Shipment", href: "/features" },
+      { label: "Get a Quote", href: "/contact" },
+      { label: "FAQs", href: "/pricing" },
+      { label: "Help Center", href: "/contact" },
+      { label: "Terms & Policy", href: "/contact" },
+    ],
   }
 
   const socials = [
     {
       label: "Facebook",
-      href: "#",
+      href: "https://aishyp.com",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -70,7 +83,7 @@ export default function Footer() {
     },
     {
       label: "Twitter",
-      href: "#",
+      href: "https://aishyp.com",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
@@ -79,7 +92,7 @@ export default function Footer() {
     },
     {
       label: "LinkedIn",
-      href: "#",
+      href: "https://www.linkedin.com/in/mohitpanwar2111/",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
@@ -89,7 +102,7 @@ export default function Footer() {
     },
     {
       label: "Instagram",
-      href: "#",
+      href: "https://aishyp.com",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -262,10 +275,18 @@ export default function Footer() {
             © {currentYear} AIShyp Logistics Network. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
-            {["Privacy Policy", "Terms of Use", "Cookie Policy"].map((item) => (
-              <a key={item} href="#" className="text-xs text-black/45 hover:text-blue-800 transition-colors duration-200">
-                {item}
-              </a>
+            {[
+              { label: "Privacy Policy", href: "/contact" },
+              { label: "Terms of Use", href: "/contact" },
+              { label: "Cookie Policy", href: "/contact" },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-xs text-black/45 hover:text-blue-800 transition-colors duration-200"
+              >
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>
